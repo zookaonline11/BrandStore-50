@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Smartphone, Wallet, Zap, CreditCard } from "lucide-react"
+import { Smartphone, Wallet, Zap, CreditCard, FileText } from "lucide-react"
 
 export default function ServicesPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -37,7 +37,7 @@ export default function ServicesPage() {
       <p className="text-muted-foreground mb-8">اختر الخدمة المناسبة لك</p>
 
       <Tabs defaultValue="recharge" className="space-y-6">
-        <TabsList className="bg-card border border-border grid w-full grid-cols-4">
+        <TabsList className="bg-card border border-border grid w-full grid-cols-5">
           <TabsTrigger
             value="recharge"
             className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
@@ -61,6 +61,12 @@ export default function ServicesPage() {
             className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
           >
             <CreditCard size={18} className="mr-2" /> الفيزا
+          </TabsTrigger>
+          <TabsTrigger
+            value="bills"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <FileText size={18} className="mr-2" /> الفواتير
           </TabsTrigger>
         </TabsList>
 
@@ -352,6 +358,79 @@ export default function ServicesPage() {
                   {isLoading ? "جاري الإرسال..." : "إرسال طلب الفيزا"}
                 </Button>
               </form>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Bills Service */}
+        <TabsContent value="bills">
+          <Card className="border-border bg-card">
+            <CardHeader>
+              <CardTitle className="text-foreground">دفع الفواتير</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <Label className="text-foreground text-sm font-medium mb-3 block">نوع الفاتورة</Label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {["كهرباء", "مياه", "غاز", "أرضي", "انترنت منزلي"].map((bill) => (
+                      <Button
+                        key={bill}
+                        type="button"
+                        variant="outline"
+                        className="border-border text-foreground hover:bg-primary/10 bg-transparent"
+                      >
+                        {bill}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="bill-account" className="text-foreground text-sm font-medium">
+                    رقم الحساب / المتر
+                  </Label>
+                  <Input
+                    id="bill-account"
+                    type="text"
+                    placeholder="أدخل رقم الحساب أو المتر"
+                    className="bg-input border-border text-foreground placeholder-muted-foreground"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="bill-amount" className="text-foreground text-sm font-medium">
+                    المبلغ المستحق
+                  </Label>
+                  <Input
+                    id="bill-amount"
+                    type="number"
+                    placeholder="0.00"
+                    className="bg-input border-border text-foreground placeholder-muted-foreground"
+                    required
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-medium h-11"
+                >
+                  {isLoading ? "جاري المعالجة..." : "دفع الفاتورة"}
+                </Button>
+              </form>
+
+              <div className="p-4 bg-primary/15 border border-primary/30 rounded-lg text-primary text-sm">
+                <p className="font-medium mb-2">الفواتير المتاحة:</p>
+                <ul className="space-y-1 text-xs">
+                  <li>⚡ كهرباء</li>
+                  <li>💧 مياه</li>
+                  <li>🔥 غاز</li>
+                  <li>☎️ أرضي</li>
+                  <li>🌐 انترنت منزلي</li>
+                </ul>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>

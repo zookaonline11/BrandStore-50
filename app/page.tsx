@@ -10,7 +10,54 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<"welcome" | "admin" | "user">("welcome")
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-card to-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-background via-card to-background flex flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md mb-8">
+        <div className="flex items-center justify-between mb-6">
+          <div className="text-3xl font-bold text-primary">Brand Store</div>
+          <div className="flex gap-2">
+            <a
+              href="mailto:shahermagdee@gmail.com"
+              title="التواصل عبر البريد الإلكتروني"
+              className="p-2 rounded-lg bg-primary/20 hover:bg-primary/30 text-primary transition"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15.5 1h-8C6.12 1 5 2.12 5 3.5v17C5 21.88 6.12 23 7.5 23h8c1.38 0 2.5-1.12 2.5-2.5v-17C18 2.12 16.88 1 15.5 1zm-4 21c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4.5-4H7V4h9v14z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://wa.me/201274790388"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="انضم للواتساب"
+              className="p-2 rounded-lg bg-green-500/20 hover:bg-green-500/30 text-green-500 transition"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.075-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.537 0-2.852-.726-2.852-1.61 0-.885 1.315-1.61 2.852-1.61 1.537 0 2.852.725 2.852 1.61 0 .884-1.315 1.61-2.852 1.61z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div className="text-center mb-8 pb-4 border-b border-border">
+          <a
+            href="https://wa.me/201274790388"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-green-500 hover:text-green-400 text-sm font-medium"
+          >
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.075-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.537 0-2.852-.726-2.852-1.61 0-.885 1.315-1.61 2.852-1.61 1.537 0 2.852.725 2.852 1.61 0 .884-1.315 1.61-2.852 1.61z" />
+            </svg>
+            انضم للواتساب: 0127479388+
+          </a>
+        </div>
+      </div>
+
       <div className="w-full max-w-md">
         {/* Welcome */}
         {activeTab === "welcome" && (
