@@ -471,4 +471,4 @@ function UserRegister({ onBack, onSwitchTab }: { onBack: () => void; onSwitchTab
       </CardContent>
     </Card>
   )
-    }
+}
