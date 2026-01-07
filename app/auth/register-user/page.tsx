@@ -3,12 +3,10 @@
 import type React from "react"
 
 import { useState } from "react"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
 import { X } from "lucide-react"
 
 export default function RegisterUserPage() {
@@ -28,7 +26,6 @@ export default function RegisterUserPage() {
     avatar: null as File | null,
     idCardFront: null as File | null,
     idCardBack: null as File | null,
-    termsAccepted: false,
   })
 
   const [previews, setPreviews] = useState({
@@ -134,11 +131,6 @@ export default function RegisterUserPage() {
   }
 
   const handleSubmit = async () => {
-    if (!formData.termsAccepted) {
-      setError("يجب الموافقة على الشروط والأحكام")
-      return
-    }
-
     setIsLoading(true)
     setError(null)
 
@@ -424,27 +416,12 @@ export default function RegisterUserPage() {
             </div>
           )}
 
-          {/* Step 3: Terms & Conditions */}
+          {/* Step 3: Verification */}
           {step === 3 && (
             <div className="space-y-4 max-h-96 overflow-y-auto">
               <div className="bg-slate-700 p-4 rounded-lg text-sm text-slate-300 space-y-3">
                 <h3 className="font-bold text-white mb-4">التحقق من الهويه</h3>
-                <p className="text-slate-400">يرجى الموافقة على الشروط والأحكام لاستكمال التسجيل</p>
-              </div>
-
-              <div className="flex items-start space-x-3 py-4 border-y border-slate-700">
-                <Checkbox
-                  id="terms"
-                  checked={formData.termsAccepted}
-                  onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, termsAccepted: checked as boolean }))}
-                />
-                <label htmlFor="terms" className="text-slate-300 cursor-pointer text-sm">
-                  أوافق على{" "}
-                  <Link href="/auth/terms" className="text-blue-400 hover:text-blue-300" target="_blank">
-                    الشروط والأحكام
-                  </Link>{" "}
-                  وسياسة الخصوصية
-                </label>
+                <p className="text-slate-400">تم إرسال بياناتك للمراجعة</p>
               </div>
 
               <div className="flex gap-2 mt-6">
@@ -453,7 +430,7 @@ export default function RegisterUserPage() {
                 </Button>
                 <Button
                   onClick={handleSubmit}
-                  disabled={isLoading || !formData.termsAccepted}
+                  disabled={isLoading}
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
                 >
                   {isLoading ? "جاري التسجيل..." : "إكمال التسجيل"}
